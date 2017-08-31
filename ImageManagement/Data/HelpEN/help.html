@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Help</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="materialize/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style>
+        .pinned {
+            position: fixed;
+        }
+        
+        .pin-top {
+            top: 0;
+        }
+        
+        nav {
+            z-index: 1;
+        }
+        
+        .materialboxed:not(.active) {
+            z-index: 0;
+        }
+        
+        #menu-large-container {
+            padding: 0;
+            position: fixed;
+            width: 20vw;
+            min-width: 300px;
+            bottom: 0;
+            left: 0;
+        }
+        
+        #menu-large {
+            padding: 0;
+            margin: 0;
+            padding-top: 1em;
+            padding-bottom: .75em;
+            border: none;
+        }
+        
+        #menu-large .collection-item {
+            background-color: transparent;
+            width: calc(100% - 1em);
+            margin-left: .5em;
+            margin-right: .5em;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+        }
+        
+        #menu-large .collection-item:hover {
+            background-color: rgba(186, 186, 186, .5);
+        }
+        
+        .collection-item a[href] {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            background-color: #37474f;
+            border-radius: 2px;
+            border-left: 4px solid #fff;
+            box-shadow: -2px 3px 6px rgba(41, 54, 68, .2), 1px 2px 4px rgba(41, 54, 68, .2);
+            padding: .33em;
+            padding-left: 1.5rem;
+            color: #fff;
+        }
+        
+        p.flow-text {
+            padding-left: calc(1.5rem + 4px);
+        }
+    </style>
+</head>
+
+<body class="white blue-grey-text text-darken-4">
+    <header>
+        <nav class="top-nav pinned pin-top blue-grey darken-4">
+            <div class="nav-wrapper">
+                <ul class="left">
+                    <li><a href="#!" class="btn-collapse hide-on-large-only" data-activates="slide-out"><i class="material-icons left">menu</i>menu</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="side-nav" id="slide-out" data-copyContentTo="menu-large">
+            <li>
+                <a href="#h.menu"></a>
+            </li>
+            <li>
+                <a href="#h.menu.file"></a>
+            </li>
+            <li>
+                <a href="#h.menu.file.new"></a>
+            </li>
+            <li>
+                <a href="#h.menu.file.open"></a>
+            </li>
+            <li>
+                <a href="#h.menu.file.save"></a>
+            </li>
+            <li>
+                <a href="#h.menu.file.saveAs"></a>
+            </li>
+            <li>
+                <a href="#h.JSON-Structure"></a>
+            </li>
+            <li><a href="#h.JSONStructure.Image"></a></li>
+            <li><a href="#h.JSONStructure.Tag"></a></li>
+            <li><a href="#h.JSONStructure.Character"></a></li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="col hide-on-med-and-down l3 blue-grey darken-3 z-depth-4" id="menu-large-container">
+                <ul class="collection" id="menu-large">
+
+                </ul>
+            </div>
+            <div class="col s12 l9 offset-l3" id="main-container">
+                <div class="container">
+                    <!-- main content container -->
+                    <section id="h.menu">
+                        <h3>Menu</h3>
+                        <h4 id="h.menu.file">Menu &gt; File</h4>
+                        <h5 id="h.menu.file.new">Menu &gt; File &gt; New</h5>
+                        <p class="flow-text">Creates the basic *.im.json file and a folder for your images, you can import them with <b>Menu &gt; Images &gt; Import</b></p>
+                        <h5 id="h.menu.file.open">Menu &gt; File &gt; Open</h5>
+                        <p class="flow-text">Opens a *.im.json file and all associated images</p>
+                        <h5 id="h.menu.file.save">Menu &gt; File &gt; Save</h5>
+                        <p class="flow-text">Saves the currently opened *.im.json file and all edited images</p>
+                        <h5 id="h.menu.file.saveAs">Menu &gt; File &gt; Save As</h5>
+                        <p class="flow-text">Saves the currently opened *.im.json file and all edited images to the given directory (full export)</p>
+                    </section>
+                    <section id="h.JSON-Structure">
+                        <h3>JSON-Structure</h3>
+                        <pre><code class="language-json">{
+  "Images": [], // List of all Images
+  "Tags": {}, // List of all Tags
+  "Characters": {} // List of all Characters
+}</code></pre>
+                        <h4 id="h.JSON-Structure.Image">Image</h4>
+                        <pre><code class="language-json">{
+  "path": "./&lt;filename&gt;",
+  "alias": "",
+  "tags": [], // list of the used tags keys
+  "characters": [], // list of the used characters keys
+}</code></pre>
+                        <h4 id="h.JSON-Structure.Tag">Tag</h4>
+                        <pre><code class="language-json">"&lt;key&gt;": {
+  "synonyms": [], // list of all Synonyms for this Tag (strings)
+  "description": "", // description for this tag 
+}</code></pre>
+                        <h4 id="h.JSON-Structure.Character">Character</h4>
+                        <pre><code class="language-json">"&lt;key&gt;": {
+  "name": "",
+  "aliases": [], // list of all aliases (strings),
+  "gender": "",
+  "description": "",
+  "date-of-birth": {
+    "day": 1,
+    "month": 1,
+    "year": 2000
+  }
+}</code></pre>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="materialize/js/materialize.min.js"></script>
+    <script src="materialize/js/init.js"></script>
+    <script>
+        /* DOCUMENT INITIALISATION */
+
+        $('#slide-out li a').each(function() {
+            var t = $(this).attr("href").replace("#h.", "").split(".").join(" > ");
+            $(this).text(t);
+        })
+
+        $('[data-copyContentTo]').each(function() {
+            var content = $(this).html(),
+                target = $('#' + $(this).attr("data-copyContentTo"));
+
+            target.html(content);
+        });
+
+        $('#menu-large li').addClass("collection-item");
+
+        $("#menu-large .collection-item a").each(function() {
+                var p = $(this).parent();
+                $(this).css({
+                    "color": "#fff",
+                    "padding-top": p.css("padding-top"),
+                    "padding-left": p.css("padding-left"),
+                    "padding-right": p.css("padding-right"),
+                    "padding-bottom": p.css("padding-bottom"),
+                })
+                p.css("padding", "0");
+            });
+
+        function setup() {
+
+            $("main").css({
+                "margin-top": $("nav").css("height"),
+                "margin-bottom": $("footer").css("height"),
+            });
+
+            $("#menu-large-container").css({
+                "height": "calc(100vh - " + $("nav").css("height") + ")"
+            })
+
+            $('#main-container').each(function() {
+                var mLeft = $(this).css("margin-left");
+                if ($('#menu-large-container').css("display") !== "none") {
+                    if (parseInt(mLeft.replace("px", "")) < parseInt($("#menu-large").css("width").replace("px", ""))) {
+                        $(this).css("margin-left", $('#menu-large').css("width"));
+                        $(this).css("width", "calc(100vw - " + $("#menu-large").css("width"));
+                    }
+                } else {
+                    if (parseInt(mLeft.replace("px", "")) < parseInt($("#menu-large").css("width").replace("px", ""))) {
+                        $(this).css("margin-left", $('#menu-large').css("width"));
+                        $(this).css("width", "100%");
+
+                    } else {
+                        $(this).css("margin-left", 0);
+                        $(this).css("width", "100%");
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            setup();
+        });
+
+        window.onresize = function(e) {
+            setup();
+        };
+    </script>
+</body>
+
+</html>
