@@ -10,32 +10,35 @@ using System.Windows.Forms;
 
 namespace ImageManagement
 {
-    public partial class TagForm : Form
+    public partial class CharacterForm : Form
     {
         public DialogResult dialogResult = DialogResult.Cancel;
-        public IMTag result = null;
-
-        public TagForm()
+        public IMCharacter result = null;
+        public CharacterForm()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            result = new IMTag()
+            var res = new IMCharacter()
             {
-                Key = textBoxKey.Text,
-                Synonyms = (textBoxAliases.Text != "") ? textBoxAliases.Lines.ToList() : new List<string>(),
-                Description = textBoxDescription.Text,
+                Key = textBox1.Text,
+                Name = textBox2.Text,
+                Aliases = (textBox3.Text != "") ? textBox3.Lines.ToList() : new List<string>(),
+                Gender = textBox4.Text,
+                Age = Convert.ToInt32(numericUpDown1.Value),
+                Description = textBox5.Text,
             };
+            result = res;
             dialogResult = DialogResult.OK;
-            this.Close();
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             dialogResult = DialogResult.Cancel;
-            this.Close();
+            Close();
         }
     }
 }

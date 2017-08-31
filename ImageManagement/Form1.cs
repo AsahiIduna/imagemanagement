@@ -28,12 +28,11 @@ namespace ImageManagement
     /// + Make Visible that a project is opened
     /// ++ Add Form for Characters
     /// ++ Add Edit Page For Tags and Characters
-    /// +++ FIX: "When checking tags on the edit image page, tons of exceptions occur and so on, fix all that"
-    /// +++ FIX: "Changes for Images won't be safed"
     /// ++ Complete the TODO list (Find More Bugs)
     /// </todo>
     public partial class Form1 : Form
     {
+        bool debug = false;
         bool ProjectOpened = false;
         string ProjectPath = "";
         string ProjectDataPath = "";
@@ -77,15 +76,18 @@ namespace ImageManagement
 
         public void Log(string text)
         {
-            if(InvokeRequired)
+            if (debug)
             {
-                Invoke(new MethodInvoker(delegate ()
+                if (InvokeRequired)
                 {
-                    debugLog.Text += text;
-                }));
-                return;
+                    Invoke(new MethodInvoker(delegate ()
+                    {
+                        debugLog.Text += text;
+                    }));
+                    return;
+                }
+                debugLog.Text += text;
             }
-            debugLog.Text += text;
         }
 
         private void ShowHelp()
@@ -457,15 +459,15 @@ namespace ImageManagement
                         Project["Tags"][t.Key] = t.Value.ToJObject();
                     }
                 }
-                foreach (var t in Characters)
+                foreach (var c in Characters)
                 {
-                    if (Project["Caracters"][t.Key] == null)
+                    if (Project["Characters"][c.Key] == null)
                     {
-                        (Project["Characters"] as JObject).Add(t.Key, t.Value.ToJObject());
+                        (Project["Characters"] as JObject).Add(c.Key, c.Value.ToJObject());
                     }
                     else
                     {
-                        Project["Characters"][t.Key] = t.Value.ToJObject();
+                        Project["Characters"][c.Key] = c.Value.ToJObject();
                     }
                 }
                 var jArr = Project["Images"] as JArray;
@@ -495,7 +497,7 @@ namespace ImageManagement
                 Log("jArr is: \n " + jArr.ToString() + "\n");
             } catch (Exception ex)
             {
-                Log(ex.Message);
+                Log(ex.Message + "\n\n" + ex.StackTrace);
                 Console.WriteLine(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
@@ -825,6 +827,28 @@ namespace ImageManagement
             {
                 UpdateProject();
                 ProjectCodeEditor.Text = Project.ToString();
+            }
+        }
+
+        private void LVCharactersContextAdd_Click(object sender, EventArgs e)
+        {
+            var dialog = new CharacterForm();
+            dialog.FormClosed += new FormClosedEventHandler(AddCharacterClosed);
+            dialog.ShowDialog();
+        }
+
+        private void AddCharacterClosed(object sender, FormClosedEventArgs e)
+        {
+            var s = (sender as CharacterForm);
+            switch (s.dialogResult)
+            {
+                case DialogResult.Cancel:
+                    break;
+                case DialogResult.OK:
+                    Characters.Add(s.result.Key, s.result);
+                    LVCharacters.Items.Add(s.result.ToListViewItem());
+                    UpdateEditLists();
+                    break;
             }
         }
     }

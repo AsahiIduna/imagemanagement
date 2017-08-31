@@ -95,6 +95,8 @@
             this.ProjectCodeEditorSearch = new System.Windows.Forms.TextBox();
             this.CodeSearchLabel = new System.Windows.Forms.Label();
             this.ProjectCodeEditor = new System.Windows.Forms.RichTextBox();
+            this.debugLogTab = new System.Windows.Forms.TabPage();
+            this.debugLog = new System.Windows.Forms.RichTextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.PreviewTabPage = new System.Windows.Forms.TabPage();
             this.TabPageEditImage = new System.Windows.Forms.TabPage();
@@ -117,8 +119,8 @@
             this.TabPageEditTags = new System.Windows.Forms.TabPage();
             this.TabPageEditCharacters = new System.Windows.Forms.TabPage();
             this.MainContent = new System.Windows.Forms.Panel();
-            this.debugLogTab = new System.Windows.Forms.TabPage();
-            this.debugLog = new System.Windows.Forms.RichTextBox();
+            this.LVCharactersContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.LVCharactersContextAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -132,6 +134,7 @@
             this.LVTagsContext.SuspendLayout();
             this.TabCharacters.SuspendLayout();
             this.ProjectCodeEditorTabPage.SuspendLayout();
+            this.debugLogTab.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.TabPageEditImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -146,7 +149,7 @@
             this.editImageTagsGroupBox.SuspendLayout();
             this.editImageCharactersGroupBox.SuspendLayout();
             this.MainContent.SuspendLayout();
-            this.debugLogTab.SuspendLayout();
+            this.LVCharactersContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -536,6 +539,7 @@
             this.LVCharactersColumnGender,
             this.LVCharactersColumnDescription,
             this.LVCharactersColumnAge});
+            this.LVCharacters.ContextMenuStrip = this.LVCharactersContext;
             this.LVCharacters.Dock = System.Windows.Forms.DockStyle.Fill;
             listViewGroup8.Header = "Key";
             listViewGroup8.Name = "LVCharactersGroupKey";
@@ -651,6 +655,25 @@
             this.ProjectCodeEditor.Size = new System.Drawing.Size(427, 380);
             this.ProjectCodeEditor.TabIndex = 3;
             this.ProjectCodeEditor.Text = "";
+            // 
+            // debugLogTab
+            // 
+            this.debugLogTab.Controls.Add(this.debugLog);
+            this.debugLogTab.Location = new System.Drawing.Point(4, 4);
+            this.debugLogTab.Name = "debugLogTab";
+            this.debugLogTab.Size = new System.Drawing.Size(439, 452);
+            this.debugLogTab.TabIndex = 5;
+            this.debugLogTab.Text = "Log";
+            this.debugLogTab.UseVisualStyleBackColor = true;
+            // 
+            // debugLog
+            // 
+            this.debugLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.debugLog.Location = new System.Drawing.Point(0, 0);
+            this.debugLog.Name = "debugLog";
+            this.debugLog.Size = new System.Drawing.Size(439, 452);
+            this.debugLog.TabIndex = 0;
+            this.debugLog.Text = "";
             // 
             // tabControl2
             // 
@@ -906,24 +929,19 @@
             this.MainContent.Size = new System.Drawing.Size(1076, 478);
             this.MainContent.TabIndex = 3;
             // 
-            // debugLogTab
+            // LVCharactersContext
             // 
-            this.debugLogTab.Controls.Add(this.debugLog);
-            this.debugLogTab.Location = new System.Drawing.Point(4, 4);
-            this.debugLogTab.Name = "debugLogTab";
-            this.debugLogTab.Size = new System.Drawing.Size(439, 452);
-            this.debugLogTab.TabIndex = 5;
-            this.debugLogTab.Text = "Log";
-            this.debugLogTab.UseVisualStyleBackColor = true;
+            this.LVCharactersContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LVCharactersContextAdd});
+            this.LVCharactersContext.Name = "LVCharactersContext";
+            this.LVCharactersContext.Size = new System.Drawing.Size(97, 26);
             // 
-            // debugLog
+            // LVCharactersContextAdd
             // 
-            this.debugLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.debugLog.Location = new System.Drawing.Point(0, 0);
-            this.debugLog.Name = "debugLog";
-            this.debugLog.Size = new System.Drawing.Size(439, 452);
-            this.debugLog.TabIndex = 0;
-            this.debugLog.Text = "";
+            this.LVCharactersContextAdd.Name = "LVCharactersContextAdd";
+            this.LVCharactersContextAdd.Size = new System.Drawing.Size(96, 22);
+            this.LVCharactersContextAdd.Text = "Add";
+            this.LVCharactersContextAdd.Click += new System.EventHandler(this.LVCharactersContextAdd_Click);
             // 
             // Form1
             // 
@@ -952,6 +970,7 @@
             this.TabCharacters.ResumeLayout(false);
             this.ProjectCodeEditorTabPage.ResumeLayout(false);
             this.ProjectCodeEditorTabPage.PerformLayout();
+            this.debugLogTab.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.TabPageEditImage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -969,7 +988,7 @@
             this.editImageCharactersGroupBox.ResumeLayout(false);
             this.editImageCharactersGroupBox.PerformLayout();
             this.MainContent.ResumeLayout(false);
-            this.debugLogTab.ResumeLayout(false);
+            this.LVCharactersContext.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1055,6 +1074,8 @@
         private System.Windows.Forms.RichTextBox ProjectCodeEditor;
         private System.Windows.Forms.TabPage debugLogTab;
         private System.Windows.Forms.RichTextBox debugLog;
+        private System.Windows.Forms.ContextMenuStrip LVCharactersContext;
+        private System.Windows.Forms.ToolStripMenuItem LVCharactersContextAdd;
     }
 }
 
