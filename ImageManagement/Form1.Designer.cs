@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Path", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Alias", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Tags", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Characters", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Key", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Synonyms", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Description", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Key", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Aliases", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Gender", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Age", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Path", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Alias", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Tags", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Characters", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Key", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Synonyms", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Description", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Key", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Aliases", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Gender", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Age", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileMSI = new System.Windows.Forms.ToolStripMenuItem();
             this.fileNewMSI = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,8 +54,8 @@
             this.imagesImportMSI = new System.Windows.Forms.ToolStripMenuItem();
             this.imagesExportMSI = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabImages = new System.Windows.Forms.TabPage();
@@ -89,6 +89,12 @@
             this.LVCharactersColumnGender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LVCharactersColumnDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LVCharactersColumnAge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ProjectCodeEditorTabPage = new System.Windows.Forms.TabPage();
+            this.ProjectCodeEditorReloadBtn = new System.Windows.Forms.Button();
+            this.ProjectCodeEditorSaveBtn = new System.Windows.Forms.Button();
+            this.ProjectCodeEditorSearch = new System.Windows.Forms.TextBox();
+            this.CodeSearchLabel = new System.Windows.Forms.Label();
+            this.ProjectCodeEditor = new System.Windows.Forms.RichTextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.PreviewTabPage = new System.Windows.Forms.TabPage();
             this.TabPageEditImage = new System.Windows.Forms.TabPage();
@@ -111,6 +117,8 @@
             this.TabPageEditTags = new System.Windows.Forms.TabPage();
             this.TabPageEditCharacters = new System.Windows.Forms.TabPage();
             this.MainContent = new System.Windows.Forms.Panel();
+            this.debugLogTab = new System.Windows.Forms.TabPage();
+            this.debugLog = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -123,6 +131,7 @@
             this.TabTags.SuspendLayout();
             this.LVTagsContext.SuspendLayout();
             this.TabCharacters.SuspendLayout();
+            this.ProjectCodeEditorTabPage.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.TabPageEditImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -137,6 +146,7 @@
             this.editImageTagsGroupBox.SuspendLayout();
             this.editImageCharactersGroupBox.SuspendLayout();
             this.MainContent.SuspendLayout();
+            this.debugLogTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -249,17 +259,17 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // statusLabel
-            // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(72, 17);
-            this.statusLabel.Text = "Status: Clear";
-            // 
             // statusProgressBar
             // 
             this.statusProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.statusProgressBar.Name = "statusProgressBar";
             this.statusProgressBar.Size = new System.Drawing.Size(100, 16);
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(72, 17);
+            this.statusLabel.Text = "Status: Clear";
             // 
             // splitContainer1
             // 
@@ -284,6 +294,8 @@
             this.tabControl1.Controls.Add(this.TabImages);
             this.tabControl1.Controls.Add(this.TabTags);
             this.tabControl1.Controls.Add(this.TabCharacters);
+            this.tabControl1.Controls.Add(this.ProjectCodeEditorTabPage);
+            this.tabControl1.Controls.Add(this.debugLogTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Multiline = true;
@@ -291,6 +303,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(447, 478);
             this.tabControl1.TabIndex = 3;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // TabImages
             // 
@@ -316,23 +329,23 @@
             this.LVImages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LVImages.FullRowSelect = true;
             this.LVImages.GridLines = true;
-            listViewGroup13.Header = "Path";
-            listViewGroup13.Name = "LVImagesGroupPath";
-            listViewGroup13.Tag = "LVImagesPath";
-            listViewGroup14.Header = "Alias";
-            listViewGroup14.Name = "LVImagesGroupAlias";
-            listViewGroup14.Tag = "LVImagesAlias";
-            listViewGroup15.Header = "Tags";
-            listViewGroup15.Name = "LVImagesGroupTags";
-            listViewGroup15.Tag = "LVImagesTags";
-            listViewGroup16.Header = "Characters";
-            listViewGroup16.Name = "LVImagesGroupCharacters";
-            listViewGroup16.Tag = "LVImagesCharacters";
+            listViewGroup1.Header = "Path";
+            listViewGroup1.Name = "LVImagesGroupPath";
+            listViewGroup1.Tag = "LVImagesPath";
+            listViewGroup2.Header = "Alias";
+            listViewGroup2.Name = "LVImagesGroupAlias";
+            listViewGroup2.Tag = "LVImagesAlias";
+            listViewGroup3.Header = "Tags";
+            listViewGroup3.Name = "LVImagesGroupTags";
+            listViewGroup3.Tag = "LVImagesTags";
+            listViewGroup4.Header = "Characters";
+            listViewGroup4.Name = "LVImagesGroupCharacters";
+            listViewGroup4.Tag = "LVImagesCharacters";
             this.LVImages.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup13,
-            listViewGroup14,
-            listViewGroup15,
-            listViewGroup16});
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
             this.LVImages.Location = new System.Drawing.Point(3, 3);
             this.LVImages.MultiSelect = false;
             this.LVImages.Name = "LVImages";
@@ -341,7 +354,7 @@
             this.LVImages.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.LVImages.TabIndex = 1;
             this.LVImages.UseCompatibleStateImageBehavior = false;
-            this.LVImages.View = System.Windows.Forms.View.Tile;
+            this.LVImages.View = System.Windows.Forms.View.Details;
             this.LVImages.SelectedIndexChanged += new System.EventHandler(this.LVImages_SelectedIndexChanged);
             // 
             // LVImagesColumnPath
@@ -449,19 +462,19 @@
             this.LVTagsHeaderDescription});
             this.LVTags.ContextMenuStrip = this.LVTagsContext;
             this.LVTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup1.Header = "Key";
-            listViewGroup1.Name = "LVTagsGroupKey";
-            listViewGroup1.Tag = "LVTagsKey";
-            listViewGroup2.Header = "Synonyms";
-            listViewGroup2.Name = "LVTagsGroupSynonyms";
-            listViewGroup2.Tag = "LVTagsSynonyms";
-            listViewGroup3.Header = "Description";
-            listViewGroup3.Name = "LVTagsGroupDescription";
-            listViewGroup3.Tag = "LVTagsDescription";
+            listViewGroup5.Header = "Key";
+            listViewGroup5.Name = "LVTagsGroupKey";
+            listViewGroup5.Tag = "LVTagsKey";
+            listViewGroup6.Header = "Synonyms";
+            listViewGroup6.Name = "LVTagsGroupSynonyms";
+            listViewGroup6.Tag = "LVTagsSynonyms";
+            listViewGroup7.Header = "Description";
+            listViewGroup7.Name = "LVTagsGroupDescription";
+            listViewGroup7.Tag = "LVTagsDescription";
             this.LVTags.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
+            listViewGroup5,
+            listViewGroup6,
+            listViewGroup7});
             this.LVTags.Location = new System.Drawing.Point(0, 0);
             this.LVTags.Name = "LVTags";
             this.LVTags.Size = new System.Drawing.Size(439, 452);
@@ -524,27 +537,27 @@
             this.LVCharactersColumnDescription,
             this.LVCharactersColumnAge});
             this.LVCharacters.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup4.Header = "Key";
-            listViewGroup4.Name = "LVCharactersGroupKey";
-            listViewGroup4.Tag = "LVCharactersKey";
-            listViewGroup5.Header = "Name";
-            listViewGroup5.Name = "LVCharactersGroupName";
-            listViewGroup5.Tag = "LVCharactersName";
-            listViewGroup6.Header = "Aliases";
-            listViewGroup6.Name = "LVCharactersGroupAliases";
-            listViewGroup6.Tag = "LVCharactersAliases";
-            listViewGroup7.Header = "Gender";
-            listViewGroup7.Name = "LVCharactersGroupGender";
-            listViewGroup7.Tag = "LVCharactersGender";
-            listViewGroup17.Header = "Age";
-            listViewGroup17.Name = "LVCharactersGroupAge";
-            listViewGroup17.Tag = "LVCharactersAge";
+            listViewGroup8.Header = "Key";
+            listViewGroup8.Name = "LVCharactersGroupKey";
+            listViewGroup8.Tag = "LVCharactersKey";
+            listViewGroup9.Header = "Name";
+            listViewGroup9.Name = "LVCharactersGroupName";
+            listViewGroup9.Tag = "LVCharactersName";
+            listViewGroup10.Header = "Aliases";
+            listViewGroup10.Name = "LVCharactersGroupAliases";
+            listViewGroup10.Tag = "LVCharactersAliases";
+            listViewGroup11.Header = "Gender";
+            listViewGroup11.Name = "LVCharactersGroupGender";
+            listViewGroup11.Tag = "LVCharactersGender";
+            listViewGroup12.Header = "Age";
+            listViewGroup12.Name = "LVCharactersGroupAge";
+            listViewGroup12.Tag = "LVCharactersAge";
             this.LVCharacters.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup4,
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7,
-            listViewGroup17});
+            listViewGroup8,
+            listViewGroup9,
+            listViewGroup10,
+            listViewGroup11,
+            listViewGroup12});
             this.LVCharacters.Location = new System.Drawing.Point(0, 0);
             this.LVCharacters.Name = "LVCharacters";
             this.LVCharacters.Size = new System.Drawing.Size(439, 452);
@@ -571,6 +584,73 @@
             // LVCharactersColumnAge
             // 
             this.LVCharactersColumnAge.Text = "Age";
+            // 
+            // ProjectCodeEditorTabPage
+            // 
+            this.ProjectCodeEditorTabPage.Controls.Add(this.ProjectCodeEditorReloadBtn);
+            this.ProjectCodeEditorTabPage.Controls.Add(this.ProjectCodeEditorSaveBtn);
+            this.ProjectCodeEditorTabPage.Controls.Add(this.ProjectCodeEditorSearch);
+            this.ProjectCodeEditorTabPage.Controls.Add(this.CodeSearchLabel);
+            this.ProjectCodeEditorTabPage.Controls.Add(this.ProjectCodeEditor);
+            this.ProjectCodeEditorTabPage.Location = new System.Drawing.Point(4, 4);
+            this.ProjectCodeEditorTabPage.Name = "ProjectCodeEditorTabPage";
+            this.ProjectCodeEditorTabPage.Size = new System.Drawing.Size(439, 452);
+            this.ProjectCodeEditorTabPage.TabIndex = 4;
+            this.ProjectCodeEditorTabPage.Text = "Project Code Editor (Advanced)";
+            this.ProjectCodeEditorTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ProjectCodeEditorReloadBtn
+            // 
+            this.ProjectCodeEditorReloadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProjectCodeEditorReloadBtn.Location = new System.Drawing.Point(279, 422);
+            this.ProjectCodeEditorReloadBtn.Name = "ProjectCodeEditorReloadBtn";
+            this.ProjectCodeEditorReloadBtn.Size = new System.Drawing.Size(75, 23);
+            this.ProjectCodeEditorReloadBtn.TabIndex = 8;
+            this.ProjectCodeEditorReloadBtn.Text = "Reload";
+            this.ProjectCodeEditorReloadBtn.UseVisualStyleBackColor = true;
+            this.ProjectCodeEditorReloadBtn.Click += new System.EventHandler(this.ProjectCodeEditorReloadBtn_Click);
+            // 
+            // ProjectCodeEditorSaveBtn
+            // 
+            this.ProjectCodeEditorSaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProjectCodeEditorSaveBtn.Location = new System.Drawing.Point(360, 422);
+            this.ProjectCodeEditorSaveBtn.Name = "ProjectCodeEditorSaveBtn";
+            this.ProjectCodeEditorSaveBtn.Size = new System.Drawing.Size(75, 23);
+            this.ProjectCodeEditorSaveBtn.TabIndex = 7;
+            this.ProjectCodeEditorSaveBtn.Text = "Save";
+            this.ProjectCodeEditorSaveBtn.UseVisualStyleBackColor = true;
+            this.ProjectCodeEditorSaveBtn.Click += new System.EventHandler(this.ProjectCodeEditorSaveBtn_Click);
+            // 
+            // ProjectCodeEditorSearch
+            // 
+            this.ProjectCodeEditorSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProjectCodeEditorSearch.Location = new System.Drawing.Point(56, 10);
+            this.ProjectCodeEditorSearch.Name = "ProjectCodeEditorSearch";
+            this.ProjectCodeEditorSearch.Size = new System.Drawing.Size(380, 20);
+            this.ProjectCodeEditorSearch.TabIndex = 6;
+            this.ProjectCodeEditorSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // CodeSearchLabel
+            // 
+            this.CodeSearchLabel.AutoSize = true;
+            this.CodeSearchLabel.Location = new System.Drawing.Point(9, 13);
+            this.CodeSearchLabel.Name = "CodeSearchLabel";
+            this.CodeSearchLabel.Size = new System.Drawing.Size(41, 13);
+            this.CodeSearchLabel.TabIndex = 4;
+            this.CodeSearchLabel.Text = "Search";
+            // 
+            // ProjectCodeEditor
+            // 
+            this.ProjectCodeEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProjectCodeEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ProjectCodeEditor.Location = new System.Drawing.Point(8, 36);
+            this.ProjectCodeEditor.Name = "ProjectCodeEditor";
+            this.ProjectCodeEditor.Size = new System.Drawing.Size(427, 380);
+            this.ProjectCodeEditor.TabIndex = 3;
+            this.ProjectCodeEditor.Text = "";
             // 
             // tabControl2
             // 
@@ -678,6 +758,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.editImageTagsCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.editImageTagsCheckedListBox.CheckOnClick = true;
             this.editImageTagsCheckedListBox.FormattingEnabled = true;
             this.editImageTagsCheckedListBox.Location = new System.Drawing.Point(9, 45);
             this.editImageTagsCheckedListBox.Name = "editImageTagsCheckedListBox";
@@ -723,6 +804,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.editImageCharactersCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.editImageCharactersCheckedListBox.CheckOnClick = true;
             this.editImageCharactersCheckedListBox.FormattingEnabled = true;
             this.editImageCharactersCheckedListBox.Location = new System.Drawing.Point(9, 45);
             this.editImageCharactersCheckedListBox.Name = "editImageCharactersCheckedListBox";
@@ -824,6 +906,25 @@
             this.MainContent.Size = new System.Drawing.Size(1076, 478);
             this.MainContent.TabIndex = 3;
             // 
+            // debugLogTab
+            // 
+            this.debugLogTab.Controls.Add(this.debugLog);
+            this.debugLogTab.Location = new System.Drawing.Point(4, 4);
+            this.debugLogTab.Name = "debugLogTab";
+            this.debugLogTab.Size = new System.Drawing.Size(439, 452);
+            this.debugLogTab.TabIndex = 5;
+            this.debugLogTab.Text = "Log";
+            this.debugLogTab.UseVisualStyleBackColor = true;
+            // 
+            // debugLog
+            // 
+            this.debugLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.debugLog.Location = new System.Drawing.Point(0, 0);
+            this.debugLog.Name = "debugLog";
+            this.debugLog.Size = new System.Drawing.Size(439, 452);
+            this.debugLog.TabIndex = 0;
+            this.debugLog.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -849,6 +950,8 @@
             this.TabTags.ResumeLayout(false);
             this.LVTagsContext.ResumeLayout(false);
             this.TabCharacters.ResumeLayout(false);
+            this.ProjectCodeEditorTabPage.ResumeLayout(false);
+            this.ProjectCodeEditorTabPage.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.TabPageEditImage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -866,6 +969,7 @@
             this.editImageCharactersGroupBox.ResumeLayout(false);
             this.editImageCharactersGroupBox.PerformLayout();
             this.MainContent.ResumeLayout(false);
+            this.debugLogTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -943,6 +1047,14 @@
         private System.Windows.Forms.ContextMenuStrip LVTagsContext;
         private System.Windows.Forms.ToolStripMenuItem LVTagsContextAdd;
         private System.Windows.Forms.ToolStripMenuItem LVTagsContextRemove;
+        private System.Windows.Forms.TabPage ProjectCodeEditorTabPage;
+        private System.Windows.Forms.Button ProjectCodeEditorReloadBtn;
+        private System.Windows.Forms.Button ProjectCodeEditorSaveBtn;
+        private System.Windows.Forms.TextBox ProjectCodeEditorSearch;
+        private System.Windows.Forms.Label CodeSearchLabel;
+        private System.Windows.Forms.RichTextBox ProjectCodeEditor;
+        private System.Windows.Forms.TabPage debugLogTab;
+        private System.Windows.Forms.RichTextBox debugLog;
     }
 }
 

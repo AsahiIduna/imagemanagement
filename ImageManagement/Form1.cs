@@ -75,6 +75,19 @@ namespace ImageManagement
             Cef.Shutdown();
         }
 
+        public void Log(string text)
+        {
+            if(InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate ()
+                {
+                    debugLog.Text += text;
+                }));
+                return;
+            }
+            debugLog.Text += text;
+        }
+
         private void ShowHelp()
         {
             var HelpForm = new HelpForm(Helper.PathToUrl(localPaths["help"]));
@@ -338,6 +351,7 @@ namespace ImageManagement
                         statusLabel.Text = "Building Characters List (" + counter + " / " + buildmax + ")";
                         counter++;
                     }
+                    UpdateEditLists();
                     statusLabel.Text = "Done Loading";
                 }));
             }
@@ -411,7 +425,7 @@ namespace ImageManagement
                     (Project["Images"] as JArray).Add(imimage.ToJObject(ProjectDataPath));
                 } catch (Exception ex)
                 {
-                    Console.WriteLine(ex);
+                    Console.WriteLine(ex + "\n\n" + ex.StackTrace);
                 }
                 if (InvokeRequired)
                 {
@@ -443,40 +457,45 @@ namespace ImageManagement
                         Project["Tags"][t.Key] = t.Value.ToJObject();
                     }
                 }
-                foreach (var c in Characters)
+                foreach (var t in Characters)
                 {
-                    if (Project["Characters"][c.Key] == null)
+                    if (Project["Caracters"][t.Key] == null)
                     {
-                        (Project["Characters"] as JObject).Add(c.Key, c.Value.ToJObject());
+                        (Project["Characters"] as JObject).Add(t.Key, t.Value.ToJObject());
                     }
                     else
                     {
-                        Project["Characters"][c.Key] = c.Value.ToJObject();
+                        Project["Characters"][t.Key] = t.Value.ToJObject();
                     }
                 }
                 var jArr = Project["Images"] as JArray;
                 var addList = new List<JObject>();
-                foreach(var i in Images.Values)
+                Log("Saving images\n");
+                foreach(var i in Images)
                 {
-                    var matchCount = 0;
-                    foreach(var a in jArr)
+                    Log(i.Key + ": ");
+                    var matches = (from x in jArr where (x as JObject)["path"].ToString().Split('/').Last() == i.Key select x);
+                    Log(matches.Count() + " Matches Found");
+                    if(matches.Count() <= 0)
                     {
-                        if (a["path"].ToString().Split('/').Last() == i.Path.Split('\\').Last())
-                        {
-                            matchCount++;
-                        }
-                    }
-                    if(matchCount <= 0)
+                        addList.Add(i.Value.ToJObject(ProjectDataPath));
+                        Log(" -- Queueing to add -- " + addList.Count() + " already queued\n"); 
+                    } else if(matches.Count() == 1)
                     {
-                        addList.Add(i.ToJObject(ProjectDataPath));
+                        var x = jArr.IndexOf(matches.First());
+                        jArr[x] = i.Value.ToJObject(ProjectDataPath);
+                        Log(" -- Modified \n");
                     }
                 }
                 foreach(var v in addList)
                 {
                     jArr.Add(v);
+                    Log("Added " + v["path"].ToString() + "\n");
                 }
+                Log("jArr is: \n " + jArr.ToString() + "\n");
             } catch (Exception ex)
             {
+                Log(ex.Message);
                 Console.WriteLine(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
@@ -487,67 +506,80 @@ namespace ImageManagement
             File.WriteAllText(ProjectPath, Project.ToString());
         }
 
+        private string BuildTitle()
+        {
+            return string.Format("Image Manager @[{0}] --> {1}", (ProjectOpened) ? ProjectPath : "no project opened", (SelectedImage != null) ? SelectedImage.Path.Split('\\').Last() : "none selected");
+        }
+
         private void UpdateEditLists()
         {
             try
             {
-                var clb = editImageTagsCheckedListBox;
-                clb.Items.Clear();
-                foreach (var v in Tags)
-                {
-                    clb.Items.Add(v.Key, false);
-                }
-                if (SelectedImage != null)
-                {
-                    foreach (var i in clb.Items)
+                if (SelectedImage != null) {
+                    var clb = editImageTagsCheckedListBox;
+                    clb.Items.Clear();
+                    foreach (var v in Tags)
                     {
-                        int index = clb.Items.IndexOf(i);
-                        clb.SetItemChecked(index, SelectedImage.Tags.Contains(i));
+                        clb.Items.Add(v.Key, SelectedImage.Tags.Contains(v.Key));
                     }
-                }
-                clb = editImageCharactersCheckedListBox;
-                clb.Items.Clear();
-                foreach (var v in Characters)
-                {
-                    clb.Items.Add(v.Key, false);
-                }
-                if (SelectedImage != null)
-                {
-                    foreach (var i in clb.Items)
+                    clb = editImageCharactersCheckedListBox;
+                    clb.Items.Clear();
+                    foreach (var v in Characters)
                     {
-                        int index = clb.Items.IndexOf(i);
-                        clb.SetItemChecked(index, SelectedImage.Characters.Contains(i));
+                        clb.Items.Add(v.Key, SelectedImage.Characters.Contains(v.Key));
                     }
                 }
             } catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + "\n\n" + ex.StackTrace);
+            }
+        }
+
+        private void UpdateSelectedImage()
+        {
+            if (SelectedImage != null) {
+                var res = (from img in Images where img.Key == SelectedImage.Path.Split('\\').Last() select img).First();
+                res = new KeyValuePair<string, IMImage>(res.Key, SelectedImage);
+                foreach(var v in LVImages.Items)
+                {
+                    if((v as ListViewItem).Text == res.Key)
+                    {
+                        LVImages.Items.Remove(v as ListViewItem);
+                        LVImages.Items.Add(res.Value.ToListViewItem());
+                        return;
+                    }
+                }
             }
         }
 
         private void fileHelpMSI_Click(object sender, EventArgs e)
         {
             ShowHelp();
+            Text = BuildTitle();
         }
 
         private void fileNewMSI_Click(object sender, EventArgs e)
         {
             CreateNew();
+            Text = BuildTitle();
         }
 
         private void imagesImportMSI_Click(object sender, EventArgs e)
         {
             ImportImages();
+            Text = BuildTitle();
         }
 
         private void fileSaveMSI_Click(object sender, EventArgs e)
         {
             Save();
+            Text = BuildTitle();
         }
 
         private void fileOpenMSI_Click(object sender, EventArgs e)
         {
             Open();
+            Text = BuildTitle();
         }
 
         private void LVImages_SelectedIndexChanged(object sender, EventArgs e)
@@ -560,50 +592,64 @@ namespace ImageManagement
                     //i = (sender as ListView).Items.IndexOf(v as ListViewItem);
                     key = (v as ListViewItem).Text;
                 }
+                Console.WriteLine("##### \"" + key + "\"");
                 SelectedImage = Images[key];
-                Previewer.Load(Helper.PathToUrl(SelectedImage.Path));
+                Text = BuildTitle();
+                if(tabControl2.SelectedIndex == 0) Previewer.Load(Helper.PathToUrl(SelectedImage.Path));
                 editImagePictureBox.Image = Image.FromFile(SelectedImage.Path);
                 editImagePathTextBox.Text = SelectedImage.Path;
                 editImageAliasTextBox.Text = SelectedImage.Alias;
+
+                UpdateEditLists();
 
                 if(SelectedImage != null)
                 {
                     foreach(var i in editImageTagsCheckedListBox.Items)
                     {
-                        editImageTagsCheckedListBox.SetItemChecked(editImageTagsCheckedListBox.Items.IndexOf(i), SelectedImage.Tags.Contains(i));
+                        editImageTagsCheckedListBox.SetItemChecked(editImageTagsCheckedListBox.Items.IndexOf(i), SelectedImage.Tags.Contains(i.ToString()));
                     }
                     foreach (var i in editImageCharactersCheckedListBox.Items)
                     {
-                        editImageCharactersCheckedListBox.SetItemChecked(editImageCharactersCheckedListBox.Items.IndexOf(i), SelectedImage.Characters.Contains(i));
+                        editImageCharactersCheckedListBox.SetItemChecked(editImageCharactersCheckedListBox.Items.IndexOf(i), SelectedImage.Characters.Contains(i.ToString()));
                     }
                 }
             } catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
 
         private void editImageCharactersFilterTextBox_TextChanged(object sender, EventArgs e)
         {
+
             var clb = editImageCharactersCheckedListBox;
             UpdateEditLists();
             try
             {
+                var mismatcheditems = new List<object>();
                 foreach (var i in clb.Items)
                 {
                     var matches = Regex.Matches(i as string, (sender as TextBox).Text);
                     if (matches.Count <= 0)
                     {
-                        clb.Items.Remove(i);
+                        mismatcheditems.Add(i);
                     }
+                }
+                foreach (var i in mismatcheditems)
+                {
+                    clb.Items.Remove(i);
                 }
                 (sender as TextBox).BackColor = Color.FromArgb(255, 0, 186, 255);
                 (sender as TextBox).ForeColor = Color.FromArgb(255, 40, 56, 60);
             }
-            catch
+            catch (ArgumentException)
             {
                 (sender as TextBox).BackColor = Color.FromArgb(255, 255, 0, 0);
                 (sender as TextBox).ForeColor = Color.FromArgb(255, 255, 255, 255);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -612,7 +658,7 @@ namespace ImageManagement
             if (SelectedImage != null)
             {
                 var clb = (sender as CheckedListBox);
-                foreach (var i in clb.CheckedItems)
+                foreach (var i in clb.Items)
                 {
                     var index = clb.Items.IndexOf(i);
                     if (clb.GetItemChecked(index))
@@ -631,6 +677,7 @@ namespace ImageManagement
                     }
                 }
             }
+            UpdateSelectedImage();
         }
 
         private void editImageAliasTextBox_TextChanged(object sender, EventArgs e)
@@ -639,6 +686,7 @@ namespace ImageManagement
             {
                 SelectedImage.Alias = (sender as TextBox).Text;
             }
+            UpdateSelectedImage();
         }
 
         private void LVImagesContextViewLargeIcon_Click(object sender, EventArgs e)
@@ -694,20 +742,29 @@ namespace ImageManagement
             UpdateEditLists();
             try
             {
+                var mismatcheditems = new List<object>();
                 foreach (var i in clb.Items) {
                     var matches = Regex.Matches(i as string, (sender as TextBox).Text);
                     if(matches.Count <= 0)
                     {
-                        clb.Items.Remove(i);
+                        mismatcheditems.Add(i);
                     }
+                }
+                foreach (var i in mismatcheditems)
+                {
+                    clb.Items.Remove(i);
                 }
                 (sender as TextBox).BackColor = Color.FromArgb(255, 0, 186, 255);
                 (sender as TextBox).ForeColor = Color.FromArgb(255, 40, 56, 60);
             }
-            catch
+            catch (ArgumentException)
             {
                 (sender as TextBox).BackColor = Color.FromArgb(255, 255, 0, 0);
                 (sender as TextBox).ForeColor = Color.FromArgb(255, 255, 255, 255);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -732,6 +789,42 @@ namespace ImageManagement
                         }
                     }
                 }
+            }
+        }
+
+        private void ProjectCodeEditorReloadBtn_Click(object sender, EventArgs e)
+        {
+            UpdateProject();
+            ProjectCodeEditor.Text = Project.ToString();
+        }
+
+        private void ProjectCodeEditorSaveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Project = JObject.Parse(ProjectCodeEditor.Text);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Occured");
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ProjectCodeEditor.Select(ProjectCodeEditor.Text.IndexOf(ProjectCodeEditorSearch.Text), ProjectCodeEditorSearch.Text.Length);
+            }
+            catch { }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var s = sender as TabControl;
+            if(s.SelectedIndex == 3)
+            {
+                UpdateProject();
+                ProjectCodeEditor.Text = Project.ToString();
             }
         }
     }
